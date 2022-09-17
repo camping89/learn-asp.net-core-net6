@@ -3,6 +3,11 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome to hot reload</h1>
+    <h2>Steps to enable hotreload in Rider</h2>
+    <ol style="text-align: left">
+        <li>Add Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation NuGet package to the project</li>
+        <li>Add the following in Startup.cs: services.AddControllersWithViews().AddRazorRuntimeCompilation();</li>
+    </ol>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

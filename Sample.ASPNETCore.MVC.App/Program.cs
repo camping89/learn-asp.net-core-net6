@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Sample.ASPNETCore.MVC.App.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
@@ -20,7 +25,7 @@ else
 
 /*
  * THE REQUEST PIPELINE
- * Middleware order is important.e.g. Authen should go before app.UseAuthorization();
+ * Middleware order is important.e.g. Authentication should go before app.UseAuthorization();
  */
 
 app.UseHttpsRedirection();

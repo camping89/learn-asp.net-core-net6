@@ -1,0 +1,38 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "_Layout";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>&nbsp;Create
+            </a>
+        </div>
+    </div>
+</div>
+<br/><br/>
+<table class="table table-borderless table-striped" style="width: 100%">
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Display Order</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var cate in Model)
+    {
+        <tr>
+            <td style="width: 50%">@cate.Name</td>
+            <td style="width: 30%">@cate.DisplayOrder</td>
+        </tr>
+    }
+    </tbody>
+</table>
