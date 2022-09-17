@@ -5,6 +5,11 @@
     Layout = "_Layout";
 }
 
+@if (TempData["Success"] is not null)
+{
+    <h2>@TempData["Success"]</h2>
+}
+
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -32,6 +37,14 @@
         <tr>
             <td style="width: 50%">@cate.Name</td>
             <td style="width: 30%">@cate.DisplayOrder</td>
+            <td class="w-75 btn-group" role="group">
+                <a asp-controller="Category" asp-action="Edit" asp-route-id="@cate.Id" class="btn btn-primary mx-2">
+                    <i class="bi bi-pencil-square"></i>&nbsp;Edit
+                </a>&nbsp;
+                <a asp-controller="Category" asp-action="Delete" asp-route-id="@cate.Id" class="btn btn-danger mx-2">
+                    <i class="bi bi-trash-fill"></i>&nbsp;Delete
+                </a>
+            </td>
         </tr>
     }
     </tbody>
