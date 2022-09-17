@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sample.ASPNETCore.MVC.App.Data;
+using Sample.ASPNETCore.MVC.App.Models;
 
 namespace Sample.ASPNETCore.MVC.App.Controllers;
 
@@ -21,5 +22,26 @@ public class CategoryController : Controller
     public IActionResult Create()
     {
         return View();
+    }
+
+    [HttpPost]
+
+    // already use setup at program.cs for this [ValidateAntiForgeryToken]
+    public IActionResult Create(Category category)
+    {
+        // if (category.Name.Equals(category.DisplayOrder.ToString(),StringComparison.InvariantCultureIgnoreCase))
+        if (category.Name == category.DisplayOrder.ToString())
+        {
+            ModelState.AddModelError("nAmE", $"The display order can't exactly match the name.");
+        }
+
+        if (ModelState.IsValid)
+        {
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(category);
     }
 }
